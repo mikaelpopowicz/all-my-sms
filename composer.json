@@ -1,13 +1,12 @@
 {
-    "name": "laravel-notification-channels/:package_name",
-    "description": ":package_description",
-    "homepage": "https://github.com/laravel-notification-channels/:package_name",
+    "name": "laravel-notification-channels/all-my-sms",
+    "description": "AllMySms Notifications driver",
+    "homepage": "https://github.com/laravel-notification-channels/all-my-sms",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
-            "homepage": ":author_website",
+            "name": "Mikaël Popowicz",
+            "email": "mikael.popowicz@gmail.com",
             "role": "Developer"
         }
     ],
@@ -22,12 +21,12 @@
     },
     "autoload": {
         "psr-4": {
-            "NotificationChannels\\:channel_namespace\\": "src"
+            "NotificationChannels\\AllMySms\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "NotificationChannels\\:channel_namespace\\Test\\": "tests"
+            "NotificationChannels\\AllMySms\\Test\\": "tests"
         }
     },
     "scripts": {
