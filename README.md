@@ -27,19 +27,73 @@ This package makes it easy to send notifications using [AllMySms](https://www.al
 
 ## Installation
 
-Please also include the steps for any third-party service setup that's required for this package.
+You can install the package via composer:
+
+``` bash
+composer require laravel-notification-channels/all-my-sms
+```
 
 ### Setting up the AllMySms service
 
-Optionally include a few steps how users can set up the service.
+Add the following code to you `config/services.php`:
+
+```php
+// config/services.php
+...
+'all_my_sms' => [
+    'uri' => env('ALL_MY_SMS_URI', 'https://api.allmysms.com/http/9.0'),
+    'login' => env('ALL_MY_SMS_LOGIN'),
+    'api_key' => env('ALL_MY_SMS_API_KEY'),
+    'format' => env('ALL_MY_SMS_FORMAT', 'json'),
+    'sender' => env('ALL_MY_SMS_SENDER'),
+    'universal_to' => env('ALL_MY_SMS_UNIVERSAL_TO'),
+],
+...
+```
 
 ## Usage
 
-Some code examples, make it clear how to use the package
+Now you can use the channel in your `via()` method inside the notification:
+
+``` php
+use NotificationChannels\AllMySms\AllMySmsChannel;
+use NotificationChannels\AllMySms\AllMySmsMessage;
+use Illuminate\Notifications\Notification;
+
+class ProjectCreated extends Notification
+{
+    public function via($notifiable)
+    {
+        return [AllMySmsChannel::class];
+    }
+
+    public function toAllMySms($notifiable)
+    {
+        return new AllMySmsMessage('Content');
+    }
+}
+```
+
+In order to let your Notification know which phone number to use, add the `routeNotificationForAllMySms` method to your Notifiable model.
+
+This method needs to return a phone number.
+
+```php
+public function routeNotificationForAllMySms(Notification $notification)
+{
+    return $this->phone_number;
+}
+```
+
+For testing purpose you may set the `ALL_MY_SMS_UNIVERSAL_TO` environment variable to always send SMS to the configured number.
 
 ### Available Message methods
 
-A list of all available options
+- `content(string $content)`: Accepts a string value for the sms content.
+- `sender(string $sender)`: Accepts a string value for the sender name.
+- `campaign(string $campaign)`: Accepts a string value for the sms campaign name.
+- `sendAt(\DateTime $sendAt)`: Accepts a DateTime for the sms due date.
+- `parameters(array $parameters)`: Accepts an array for the sms parameters.
 
 ## Changelog
 

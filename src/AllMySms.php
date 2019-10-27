@@ -124,8 +124,8 @@ class AllMySms
             $sms['DATA']['CAMPAIGN_NAME'] = $campaign;
         }
 
-        if (($date = data_get($data, 'date')) && $date instanceof \DateTime) {
-            $sms['DATA']['DATE'] = $date->format('Y-m-d H:i:s');
+        if ($date = data_get($data, 'date')) {
+            $sms['DATA']['DATE'] = $date;
         }
 
         return [

@@ -2,8 +2,12 @@
 
 namespace NotificationChannels\AllMySms;
 
+use DateTime;
+
 class AllMySmsMessage
 {
+    const DATE_FORMAT = 'Y-m-d H:i:s';
+
     /**
      * The message content.
      *
@@ -100,12 +104,17 @@ class AllMySmsMessage
     /**
      * Set the date the message should sent at.
      *
-     * @param  \DateTime  $sendAt
+     * @param  \DateTime|string  $sendAt
      * @return $this
+     * @throws \Exception
      */
-    public function sendAt(\DateTime $sendAt)
+    public function sendAt($sendAt)
     {
-        $this->sendAt = $sendAt;
+        if (! $sendAt instanceof DateTime) {
+            $sendAt = new DateTime($sendAt);
+        }
+
+        $this->sendAt = $sendAt->format(static::DATE_FORMAT);
 
         return $this;
     }

@@ -60,7 +60,7 @@ class MessageTest extends TestCase
 
         $this->message->sendAt($date);
 
-        $this->assertEquals($date, Arr::get($this->message->toArray(), 'date'));
+        $this->assertEquals($date->format(AllMySmsMessage::DATE_FORMAT), Arr::get($this->message->toArray(), 'date'));
     }
 
     /** @test */
