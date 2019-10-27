@@ -32,7 +32,7 @@ class AllMySmsMessage
     /**
      * The (optional) date the message should sent at.
      *
-     * @var \DateTime|null
+     * @var string|null
      */
     public $sendAt;
 

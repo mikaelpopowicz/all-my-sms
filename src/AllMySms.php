@@ -27,7 +27,6 @@ class AllMySms
      *
      * @param  \GuzzleHttp\Client  $http
      * @param  array  $config
-     * @return void
      */
     public function __construct(HttpClient $http, array $config)
     {

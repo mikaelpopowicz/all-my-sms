@@ -20,7 +20,7 @@ class AllMySmsChannel
     /**
      * The phone number the message should always send to.
      *
-     * @var string
+     * @var string|null
      */
     protected $to;
 
@@ -30,7 +30,6 @@ class AllMySmsChannel
      * @param  \NotificationChannels\AllMySms\AllMySms  $client
      * @param  string|null  $sender
      * @param  string|null  $to
-     * @return void
      */
     public function __construct(AllMySms $client, ?string $sender = null, ?string $to = null)
     {
@@ -44,6 +43,7 @@ class AllMySmsChannel
      *
      * @param mixed $notifiable
      * @param \Illuminate\Notifications\Notification $notification
+     * @return void
      *
      * @throws \NotificationChannels\AllMySms\Exceptions\CouldNotSendNotification
      */
