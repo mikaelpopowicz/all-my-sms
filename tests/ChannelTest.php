@@ -23,7 +23,7 @@ class ChannelTest extends TestCase
     protected $config;
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     protected function setUp(): void
     {

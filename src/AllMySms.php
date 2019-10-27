@@ -2,8 +2,8 @@
 
 namespace NotificationChannels\AllMySms;
 
-use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\RequestOptions;
+use GuzzleHttp\Client as HttpClient;
 use Psr\Http\Message\ResponseInterface;
 
 class AllMySms
@@ -55,7 +55,7 @@ class AllMySms
      */
     public function sendSms(string $to, array $data, ?string $sender = null): ?ResponseInterface
     {
-        $response = $this->http->post($this->getFullUrl('sendSms'), [
+        $response = $this->httpClient()->post($this->getFullUrl('sendSms'), [
             RequestOptions::FORM_PARAMS => $this->formatRequest($to, $data, $sender),
         ]);
 
@@ -83,7 +83,7 @@ class AllMySms
      */
     protected function getFullUrl(string $path): string
     {
-        return trim($this->config['uri'], '/') . '/' . ltrim($path, '/');
+        return trim($this->config['uri'], '/').'/'.ltrim($path, '/');
     }
 
     /**
@@ -107,7 +107,7 @@ class AllMySms
                 'SMS' => [
                     array_merge([
                         'MOBILEPHONE' => $to,
-                    ], $parameters)
+                    ], $parameters),
                 ],
             ],
         ];
