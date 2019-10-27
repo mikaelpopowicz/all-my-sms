@@ -64,7 +64,7 @@ class ProjectCreated extends Notification
 {
     public function via($notifiable)
     {
-        return [AllMySmsChannel::class];
+        return [AllMySmsChannel::class]; // or 'all_my_sms'
     }
 
     public function toAllMySms($notifiable)
